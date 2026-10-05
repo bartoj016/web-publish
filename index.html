@@ -160,23 +160,63 @@
         .card {
             background: #ffffff;
             border-radius: var(--radius);
-            padding: 2rem;
+            overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            border-top: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-5px);
         }
 
-        .card h3 {
+        /* Obal obrázka s pevnou výškou a efektom pri prechode myšou */
+        .card-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        /* Odznak na fotke (názov card-badge zabráni konfliktu s bannerom) */
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(217, 119, 6, 0.9);
+            color: #ffffff;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Textový obsah karty s pôvodným odsadením */
+        .card-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
             font-size: 1.3rem;
             margin-bottom: 0.8rem;
             color: var(--text-main);
         }
 
-        .card p {
+        .card-content p {
             color: var(--text-muted);
             font-size: 0.95rem;
         }
@@ -394,23 +434,45 @@
         <div id="dennemenu"></div>
     </section>
 
-    <!-- Hlavné špeciality -->
     <section class="section" id="ponuka">
         <h2 class="section-title">Čo ponúkame?</h2>
-        <p class="section-subtitle">Široký výber hotových jedál, minútok a čerstvej pizze</p>
+        <p class="section-subtitle">Široký výber poctivého jedla, skvelé priestory pre rodiny aj oslavy</p>
 
         <div class="grid">
+            <!-- Reštaurácia -->
             <div class="card">
-                <h3>Reštaurácia</h3>
-                <p>Odporúčame naše chrumkavé pečené koleno, poctivé bryndzové halušky a šťavnaté mäsité aj bezmäsité jedlá.</p>
+                <div class="card-image">
+                    <img src="gallery/restauracia3.jpg" alt="Reštaurácia">
+                    <span class="card-badge">Tradičná kuchyňa</span>
+                </div>
+                <div class="card-content">
+                    <h3>Reštaurácia</h3>
+                    <p>Odporúčame naše chrumkavé pečené koleno, poctivé bryndzové halušky a šťavnaté mäsité aj bezmäsité jedlá.</p>
+                </div>
             </div>
+
+            <!-- Detské ihrisko -->
             <div class="card">
-                <h3>Banketka</h3>
-                <p>Priestory vhodné pre rodinné aj firemné oslavy.</p>
+                <div class="card-image">
+                    <img src="gallery/ihrisko.jpg" alt="Detské ihrisko">
+                    <span class="card-badge">Pre rodiny</span>
+                </div>
+                <div class="card-content">
+                    <h3>Detské ihrisko</h3>
+                    <p>Bezpečné a zábavné ihrisko pre vaše deti. Vy si v pokoji vychutnáte kávu alebo skvelý obed.</p>
+                </div>
             </div>
+
+            <!-- Banketka -->
             <div class="card">
-                <h3>Piváreň</h3>
-                <p>České a slovenské čapované pivá, široký výber nealka.</p>
+                <div class="card-image">
+                    <img src="gallery/banketka.jpg" alt="Banketka a oslavy">
+                    <span class="card-badge">Súkromné akcie</span>
+                </div>
+                <div class="card-content">
+                    <h3>Banketka</h3>
+                    <p>Samostatný priestor ideálny pre rodinné oslavy, svadby, krstiny či firemné posedenia s cateringom na mieru.</p>
+                </div>
             </div>
         </div>
     </section>
