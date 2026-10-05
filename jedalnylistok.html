@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #d97706; /* Teplá oranžovo-zlatá */
+            --primary: #d97706;
             --primary-hover: #b45309;
-            --bg-dark: #1c140e; /* Hlboká čokoládovo-hnedá */
+            --bg-dark: #1c140e;
             --bg-card: #271c14;
-            --bg-light: #faf6f0; /* Krémová */
+            --bg-light: #faf6f0;
             --text-main: #2b2118;
             --text-muted: #6b5c4d;
             --text-light: #f3eae1;
@@ -35,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* Navigácia */
+        /* Nav */
         header {
             position: sticky;
             top: 0;
@@ -56,7 +56,7 @@
         }
 
         .logo img {
-            height: 45px; /* Výšku si môžete upraviť podľa potreby */
+            height: 45px;
             width: auto;
             display: block;
         }
@@ -94,7 +94,7 @@
             background: var(--primary-hover);
         }
 
-        /* Header Sekcia */
+        /* Header */
         .page-header {
             background: linear-gradient(rgba(28, 20, 14, 0.85), rgba(28, 20, 14, 0.9)), 
                         url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80') center/cover;
@@ -116,8 +116,6 @@
             max-width: 600px;
             margin: 0 auto;
         }
-
-        /* Hlavný obsah */
         .container {
             max-width: 900px;
             margin: 3rem auto;
@@ -126,7 +124,7 @@
             width: 100%;
         }
 
-        /* Zoznam obrázkov pod sebou */
+        /* obrázky pod sebou */
         .menu-stack {
             display: flex;
             flex-direction: column;
@@ -144,7 +142,6 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* Oznámenie ak sa nenájdu obrázky */
         .no-images {
             text-align: center;
             padding: 3rem 2rem;
@@ -161,7 +158,7 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Pätička */
+        /* Paticka */
         footer {
             background: var(--bg-dark);
             color: var(--text-light);
@@ -219,13 +216,12 @@
             transition: all 0.3s ease;
         }  
 
-    /* Mobilné zobrazenie */
     @media (max-width: 768px) {
         .hamburger {
-            display: flex; /* Zobrazí hamburger na mobiloch */
+            display: flex;
         }
         nav ul {
-            display: none; /* V základe skryté */
+            display: none;
             position: absolute;
             top: 100%;
             left: 0;
@@ -238,11 +234,9 @@
             border-bottom: 1px solid rgba(217, 119, 6, 0.2);
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-        /* Trieda, ktorú pridá JavaScript po kliknutí */
         nav ul.active {
             display: flex;
         }
-        /* Skrytie tlačidla rezervácie v hlavičke na malých displejoch (voliteľné) */
         .header-btn {
             display: none;
         }
@@ -252,7 +246,7 @@
 </head>
 <body>
 
-    <!-- Navigácia -->
+    <!-- Nav -->
     <header>
         <a href="index.html" class="logo">
             <img src="gallery/logo3.png" alt="KAČABAR">
@@ -275,19 +269,17 @@
         </nav>
     </header>
 
-    <!-- Header Sekcia -->
+    <!-- Header-->
     <section class="page-header">
         <h1>Jedálny lístok</h1>
         <p>Prezrite si našu aktuálnu ponuku jedál, špecialít a dezertov.</p>
     </section>
 
-    <!-- Hlavný obsah -->
     <main class="container">
-        <!-- Obrázky načítané v presnom číselnom poradí pod sebou -->
+        <!-- Obrázky -->
         <div class="menu-stack" id="menuContainer"></div>
     </main>
 
-    <!-- Pätička -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
@@ -309,17 +301,16 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 KAČABAR. Všetky práva vyhradené.</p>
+            <p>© 2026 Jakub Barto. Všetky práva vyhradené. Tento grafický a kódový návrh je autorským dielom vytvoreným výhradne pre potreby prezentácie pre Kacabar. Akékoľvek kopírovanie alebo použitie bez súhlasu autora je protiprávne.</p>
         </div>
     </footer>
 
-    <!-- Skript pre zobrazenie obrázkov 1.jpg, 2.jpg, 3.jpg ... pod sebou -->
+    <!-- zobrazenie obrázkov 1.jpg, 2.jpg, 3.jpg pod sebou -->
     <script>
         const folderPath = 'jedalnylistok/';
         const container = document.getElementById('menuContainer');
-        const maxPagesToCheck = 30; // Maximálny počet strán na preverenie
+        const maxPagesToCheck = 30;
 
-        // Overí existenciu jedného čísla (skúša 1.jpg, 1.JPG, 1.jpeg)
         function checkImageForNumber(number) {
             return new Promise((resolve) => {
                 const extensions = ['jpg', 'JPG', 'jpeg', 'JPEG'];
@@ -352,7 +343,6 @@
             }
 
             const results = await Promise.all(checks);
-            // Vzostupné zoradenie podľa čísla (1, 2, 3...)
             const validImages = results.filter(r => r.exists).sort((a, b) => a.number - b.number);
 
             container.innerHTML = '';
@@ -382,12 +372,10 @@
     const hamburger = document.getElementById('hamburger');
     const navList = document.getElementById('nav-list');
 
-    // Otvorenie / zatvorenie menu po kliknutí na hamburger
     hamburger.addEventListener('click', () => {
         navList.classList.toggle('active');
     });
 
-    // Automatické zatvorenie menu po kliknutí na akýkoľvek odkaz
     document.querySelectorAll('nav a').forEach(link => {
         link.addEventListener('click', () => {
             navList.classList.remove('active');
