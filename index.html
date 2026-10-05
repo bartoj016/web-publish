@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kačabar | Reštaurácia, Banketka & Piváreň</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d97706;
+            --primary-hover: #b45309;
+            --bg-dark: #1c140e;
+            --bg-card: #271c14;
+            --bg-light: #faf6f0;
+            --text-main: #2b2118;
+            --text-muted: #6b5c4d;
+            --text-light: #f3eae1;
+            --accent: #e58e26;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigácia */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 45px; /* Výšku si môžete upraviť podľa potreby */
+            width: auto;
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.6rem 1.4rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Hero sekcia */
+        .hero {
+            background: linear-gradient(rgba(28, 20, 14, 0.75), rgba(28, 20, 14, 0.85)), 
+                        url(gallery/restauracia2.png) center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 8rem 1rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            color: #d1c4b6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* O nás & Špeciality */
+        .section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Banner s ponukou */
+        .banner {
+            background: var(--bg-card);
+            color: var(--text-light);
+            padding: 4rem 5%;
+            border-radius: var(--radius);
+            margin: 3rem 5%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .banner-text {
+            max-width: 600px;
+        }
+
+        .banner-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(217, 119, 6, 0.2);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        #dennemenutop{
+            padding: 1rem;
+            scroll-margin-top: 80px;
+        }
+        #dennemenutop p{
+            margin-bottom: 0rem;
+        }
+        /* Kontajner */
+        #dennemenu {
+            text-align: center;
+            width: 100%;
+            padding-top: 2rem;
+        }
+
+        /* Obrázok v kontajneri */
+        #dennemenu img {
+            display: block;
+            margin: 0 auto;      /* Zarovnanie na stred */
+            width: 50%;         /* Roztiahne sa na plnú šírku mobilu */
+            max-width: 850px;    /* TU nastavíš maximálnu veľkosť (napr. 700px, 850px, 1000px) */
+            height: auto;
+        }
+
+        /* Patka */
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 3rem 5% 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-col p, .footer-col li {
+            color: #a89887;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            list-style: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #7a6b5d;
+            font-size: 0.85rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        border-radius: 2px;
+            transition: all 0.3s ease;
+        } 
+
+    /* Mobilné zobrazenie */
+    @media (max-width: 768px) {
+        .hamburger {
+            display: flex; /* Zobrazí hamburger na mobiloch */
+        }
+        nav ul {
+            display: none; /* V základe skryté */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(28, 20, 14, 0.98);
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 0;
+            gap: 1.2rem;
+            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        /* Trieda, ktorú pridá JavaScript po kliknutí */
+        nav ul.active {
+            display: flex;
+        }
+        /* Skrytie tlačidla rezervácie v hlavičke na malých displejoch (voliteľné) */
+        .header-btn {
+            display: none;
+        }
+        .hero h1 { font-size: 2.2rem; }
+        #dennemenu img {
+            width: 95%;         /* Roztiahne sa na plnú šírku mobilu */
+        }
+    }
+</style>
+</head>
+<body>
+
+    <!-- Navigácia -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="gallery/logo3.png" alt="KAČABAR">
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Otvoriť menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="index.html">Domov</a></li>
+                <li><a href="#dennemenutop">Denné menu</a></li>
+                <li><a href="jedalnylistok.html">Jedálny lístok</a></li>
+                <li><a href="#pivaren">Nápojový lístok</a></li>
+                <li><a href="#pizza">Pizza</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Sekcia -->
+    <section class="hero" id="domov">
+        <h1>Reštaurácia Kačabar</h1>
+        <p>Poctivé domáce špeciality, pečená pizza a čapované pivo.</p>
+        <div class="hero-buttons">
+            <a href="#dennemenutop" class="btn">Dnešné menu</a>
+            <a href="jedalnylistok.html" class="btn btn-outline">Jedálny lístok</a>
+        </div>
+    </section>
+    
+    <!-- Špeciálny Banner -->
+    <div class="banner">
+        <div class="banner-text">
+            <h2>Hľadáte priestor pre vašu oslavu?</h2>
+            <p>Ponúkame útulný salónik (banketku) a štýlový interiér v slovenskom duchu pre vaše rodinné posedenia, oslavy či firemné akcie.</p>
+            <div class="features">
+                <span class="badge">Bezplatné Wi-Fi</span>
+                <span class="badge">Parkovanie pri objekte</span>
+                <span class="badge">Prírodné prostredie</span>
+            </div>
+        </div>
+        <a href="#kontakt" class="btn">Objednať salónik</a>
+    </div>
+
+    <!-- Denne Menu -->
+    <section class="section" id="dennemenutop">
+        <h2 class="section-title">Dnešné obedové menu</h2>
+        <p class="section-subtitle">Čerstvá dennú ponuku pripravujeme každý pracovný deň od 11:00 do 15:00</p>
+    
+        <!-- Tvoj kontajner na obrázok -->
+        <div id="dennemenu"></div>
+    </section>
+
+    <!-- Hlavné špeciality -->
+    <section class="section" id="ponuka">
+        <h2 class="section-title">Čo ponúkame?</h2>
+        <p class="section-subtitle">Široký výber hotových jedál, minútok a čerstvej pizze</p>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Reštaurácia</h3>
+                <p>Odporúčame naše chrumkavé pečené koleno, poctivé bryndzové halušky a šťavnaté mäsité aj bezmäsité jedlá.</p>
+            </div>
+            <div class="card">
+                <h3>Banketka</h3>
+                <p>Priestory vhodné pre rodinné aj firemné oslavy.</p>
+            </div>
+            <div class="card">
+                <h3>Piváreň</h3>
+                <p>České a slovenské čapované pivá, široký výber nealka.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pätička -->
+    <footer id="kontakt">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Reštaurácia KAČABAR</h4>
+                <p>Príjemný gastro zážitok v pokojnom prostredí na konci mesta.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Kde nás nájdete</h4>
+                <p>Za športovým štadiónom</p>
+                <p>Nové Mesto nad Váhom</p>
+            </div>
+            <div class="footer-col">
+                <h4>Otváracie hodiny</h4>
+                <p>Pondelok – Štvrtok: 10:00 – 22:00</p>
+                <p>Piatok – Sobota: 10:00 – 24:00</p>
+                <p>Nedeľa: 11:00 – 21:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <p>Tel: +421 9XX XXX XXX</p>
+                <p>Email: info@kacabar.sk</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 KAČABAR. Všetky práva vyhradené.</p>
+        </div>
+    </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navList = document.getElementById('nav-list');
+
+        // Otvorenie / zatvorenie menu po kliknutí na hamburger
+        hamburger.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Automatické zatvorenie menu po kliknutí na akýkoľvek odkaz
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('dennemenu');
+            const imagePath = 'dennemenu/dennemenu.jpg';
+
+            const img = new Image();
+            img.src = imagePath;
+            img.alt = 'Dnešné denné menu';
+            img.style.maxWidth = '100%';
+            img.style.height = 'auto';
+            img.style.borderRadius = '12px';
+            img.style.boxShadow = '0 6px 18px rgba(0,0,0,0.1)';
+            img.align = 'center';
+
+    // Ak sa obrázok úspešne načíta
+            img.onload = () => {
+            container.innerHTML = '';
+            container.appendChild(img);
+        };
+
+    // Ak obrázok v priečinku neexistuje (fallback oznam)
+    img.onerror = () => {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 2rem; background: #fff; border-radius: 12px; border: 1px solid #eae0d5;">
+                <h3 style="margin-bottom: 0.5rem; color: #2c221e;">Dnešné menu pripravujeme</h3>
+                <p style="color: #736257;">Pre aktuálnu ponuku nám prosím zavolajte.</p>
+            </div>
+        `;
+    };
+});
+</script>
+</body>
+</html>

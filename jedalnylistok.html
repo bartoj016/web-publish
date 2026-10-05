@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jedálny lístok | Reštaurácia Kačabar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d97706; /* Teplá oranžovo-zlatá */
+            --primary-hover: #b45309;
+            --bg-dark: #1c140e; /* Hlboká čokoládovo-hnedá */
+            --bg-card: #271c14;
+            --bg-light: #faf6f0; /* Krémová */
+            --text-main: #2b2118;
+            --text-muted: #6b5c4d;
+            --text-light: #f3eae1;
+            --accent: #e58e26;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigácia */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(28, 20, 14, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 45px; /* Výšku si môžete upraviť podľa potreby */
+            width: auto;
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.6rem 1.4rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Header Sekcia */
+        .page-header {
+            background: linear-gradient(rgba(28, 20, 14, 0.85), rgba(28, 20, 14, 0.9)), 
+                        url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80') center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 4rem 1rem 3rem;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #d1c4b6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Hlavný obsah */
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Zoznam obrázkov pod sebou */
+        .menu-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .menu-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Oznámenie ak sa nenájdu obrázky */
+        .no-images {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            color: var(--text-muted);
+            width: 100%;
+        }
+
+        .no-images h3 {
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Pätička */
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 3rem 5% 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-col p, .footer-col li {
+            color: #a89887;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            list-style: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #7a6b5d;
+            font-size: 0.85rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        border-radius: 2px;
+            transition: all 0.3s ease;
+        }  
+
+    /* Mobilné zobrazenie */
+    @media (max-width: 768px) {
+        .hamburger {
+            display: flex; /* Zobrazí hamburger na mobiloch */
+        }
+        nav ul {
+            display: none; /* V základe skryté */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(28, 20, 14, 0.98);
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 0;
+            gap: 1.2rem;
+            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        /* Trieda, ktorú pridá JavaScript po kliknutí */
+        nav ul.active {
+            display: flex;
+        }
+        /* Skrytie tlačidla rezervácie v hlavičke na malých displejoch (voliteľné) */
+        .header-btn {
+            display: none;
+        }
+        .hero h1 { font-size: 2.2rem; }
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navigácia -->
+    <header>
+        <a href="index.html" class="logo">
+            <img src="gallery/logo3.png" alt="KAČABAR">
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Otvoriť menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="index.html">Domov</a></li>
+                <li><a href="#denne-menu">Denné menu</a></li>
+                <li><a href="jedalnylistok.html">Jedálny lístok</a></li>
+                <li><a href="#pivaren">Nápojový lístok</a></li>
+                <li><a href="#pizza">Pizza</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Header Sekcia -->
+    <section class="page-header">
+        <h1>Jedálny lístok</h1>
+        <p>Prezrite si našu aktuálnu ponuku jedál, špecialít a dezertov.</p>
+    </section>
+
+    <!-- Hlavný obsah -->
+    <main class="container">
+        <!-- Obrázky načítané v presnom číselnom poradí pod sebou -->
+        <div class="menu-stack" id="menuContainer"></div>
+    </main>
+
+    <!-- Pätička -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Kde nás nájdete?</h4>
+                <p><a href="https://maps.app.goo.gl/W3aXTpCpmqwAwbN69">Zobraziť na Google maps</a></p>
+                <p><a href="https://maps.apple/p/c7nZjuQ1~U--Ka">Zobraziť na Apple maps</a></p>
+                <p><a href="https://ul.waze.com/ul?venue_id=11665896.116724492.2164440&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location">Zobraziť na Waze</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Otváracie hodiny</h4>
+                <p>Pondelok – Štvrtok: 10:00 – 22:00</p>
+                <p>Piatok – Sobota: 10:00 – 24:00</p>
+                <p>Nedeľa: 11:00 – 21:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <p>Tel: +421 9XX XXX XXX</p>
+                <p>Email: info@kacabar.sk</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 KAČABAR. Všetky práva vyhradené.</p>
+        </div>
+    </footer>
+
+    <!-- Skript pre zobrazenie obrázkov 1.jpg, 2.jpg, 3.jpg ... pod sebou -->
+    <script>
+        const folderPath = 'jedalnylistok/';
+        const container = document.getElementById('menuContainer');
+        const maxPagesToCheck = 30; // Maximálny počet strán na preverenie
+
+        // Overí existenciu jedného čísla (skúša 1.jpg, 1.JPG, 1.jpeg)
+        function checkImageForNumber(number) {
+            return new Promise((resolve) => {
+                const extensions = ['jpg', 'JPG', 'jpeg', 'JPEG'];
+                let currentIndex = 0;
+
+                function tryNext() {
+                    if (currentIndex >= extensions.length) {
+                        resolve({ exists: false, number: number });
+                        return;
+                    }
+                    const ext = extensions[currentIndex];
+                    const src = `${folderPath}${number}.${ext}`;
+                    const img = new Image();
+                    img.onload = () => resolve({ exists: true, src: src, number: number });
+                    img.onerror = () => {
+                        currentIndex++;
+                        tryNext();
+                    };
+                    img.src = src;
+                }
+
+                tryNext();
+            });
+        }
+
+        async function loadImages() {
+            const checks = [];
+            for (let i = 1; i <= maxPagesToCheck; i++) {
+                checks.push(checkImageForNumber(i));
+            }
+
+            const results = await Promise.all(checks);
+            // Vzostupné zoradenie podľa čísla (1, 2, 3...)
+            const validImages = results.filter(r => r.exists).sort((a, b) => a.number - b.number);
+
+            container.innerHTML = '';
+
+            if (validImages.length > 0) {
+                validImages.forEach(item => {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = `Jedálny lístok - strana ${item.number}`;
+                    img.className = 'menu-image';
+                    img.loading = 'lazy';
+                    container.appendChild(img);
+                });
+            } else {
+                container.innerHTML = `
+                    <div class="no-images">
+                        <h3>Priečinok /jedalnylistok neobsahuje obrázky</h3>
+                        <p>Nahrajte súbory do priečinka <code>jedalnylistok/</code> pomenované číselne (napr. <code>1.jpg</code>, <code>2.jpg</code>, <code>3.jpg</code>...).</p>
+                    </div>
+                `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadImages);
+    </script>
+    <script>
+    const hamburger = document.getElementById('hamburger');
+    const navList = document.getElementById('nav-list');
+
+    // Otvorenie / zatvorenie menu po kliknutí na hamburger
+    hamburger.addEventListener('click', () => {
+        navList.classList.toggle('active');
+    });
+
+    // Automatické zatvorenie menu po kliknutí na akýkoľvek odkaz
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('active');
+        });
+    });
+    </script>
+</body>
+</html>
