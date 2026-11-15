@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penzion Park – 2-izbové apartmány na prenájom | Nové Mesto nad Váhom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #2e7d32;
+            --primary-soft: #e8f5e9;
+            --accent: #66bb6a;
+            --booking-blue: #003580;
+            --booking-accent: #006ce4;
+            --bg-body: #f6f8f6;
+            --bg-card: #ffffff;
+            --text-main: #1a241b;
+            --text-muted: #526154;
+            --border: #e1e8e2;
+            --shadow-sm: 0 2px 8px rgba(27, 94, 32, 0.06);
+            --shadow-md: 0 10px 30px rgba(27, 94, 32, 0.08);
+            --shadow-lg: 0 20px 40px rgba(15, 45, 18, 0.14);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* Navigácia */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .brand-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .brand-subtitle {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background-color: var(--primary);
+            color: #fff !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero sekcia */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(16, 56, 20, 0.88) 0%, rgba(27, 94, 32, 0.78) 100%),
+                        url('gallery/exterier1.jpg') center/cover no-repeat;
+            color: #ffffff;
+            padding: 6rem 1.5rem 7rem;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.1rem, 4vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            color: var(--primary);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-soft);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-2px);
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.98);
+            color: var(--text-main);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Booking.com Widget / Badge */
+        .booking-widget {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            background: #f4f7fb;
+            border: 1px solid #d9e4f5;
+            border-radius: var(--radius-md);
+            padding: 0.9rem 1.1rem;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .booking-widget:hover {
+            border-color: var(--booking-accent);
+            background: #edf3fc;
+            transform: translateY(-2px);
+        }
+
+        .booking-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .booking-brand {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--booking-blue);
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+        }
+
+        .booking-brand span {
+            color: var(--booking-accent);
+        }
+
+        .booking-label {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.25;
+            margin-top: 0.15rem;
+        }
+
+        .booking-reviews {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .booking-score {
+            background: var(--booking-blue);
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 800;
+            width: 48px;
+            height: 48px;
+            border-radius: 10px 10px 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0, 53, 128, 0.22);
+        }
+
+        .hero-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quick-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quick-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.93rem;
+            font-weight: 500;
+        }
+
+        .check-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary-soft);
+            color: var(--primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        /* Hlavný obsah - sekcie */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.75rem, 3vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* O apartmánoch a vybavenie */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .about-text-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .about-text-card p {
+            margin-bottom: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .video-banner {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: var(--primary-soft);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .video-banner span {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .btn-video {
+            background: var(--primary);
+            color: #fff;
+            padding: 0.55rem 1.15rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .btn-video:hover {
+            background: var(--primary-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .feature-item {
+            background: var(--bg-card);
+            padding: 1.35rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+            display: inline-block;
+        }
+
+        .feature-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-item p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* Fotogaléria */
+        .gallery-section {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            background: var(--primary-soft);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.07);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(16, 56, 20, 0.85) 0%, transparent 55%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* Kontakt */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2.5rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-info h3 {
+            font-size: 1.65rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-info a {
+            color: var(--booking-accent);
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        .contact-info > p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-details {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.35rem;
+            padding-top: 1rem;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-details .icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details strong {
+            display: block;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .contact-details a,
+        .contact-details span {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            word-break: break-word;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form-box {
+            padding: 3rem 2.5rem;
+        }
+
+        .contact-form-box h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 1.15rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background: var(--bg-body);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.12);
+        }
+
+        textarea.form-control {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 0.95rem;
+            font-size: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-light);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 20, 12, 0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 1.5rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: #ffffff;
+            font-size: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: #102412;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 2.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Responzivita */
+        @media (max-width: 920px) {
+            .hero-container,
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #ffffff;
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow-md);
+            }
+
+            nav ul.open {
+                display: flex;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hlavička a navigácia -->
+    <header>
+        <div class="nav-container">
+            <a href="#uvod" class="brand">
+                <span class="brand-title">Penzion Park</span>
+                <span class="brand-subtitle">Ubytovanie Nové Mesto nad Váhom</span>
+            </a>
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Otvoriť menu">☰</button>
+
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#uvod">Úvodná stránka</a></li>
+                    <li><a href="#o-nas">O nás</a></li>
+                    <li><a href="#o-nas">Služby a vybavenie</a></li>
+                    <li><a href="#galeria">Fotogaléria</a></li>
+                    <li><a href="#kontakt" class="btn-nav">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Úvodná sekcia -->
+    <section class="hero" id="uvod">
+        <div class="hero-container">
+            <div>
+                <div class="badge">❄️ Plne klimatizované apartmány</div>
+                <h1>Park – 2-izbové apartmány na prenájom</h1>
+                <p>Priestranné a kompletne zariadené apartmány priamo v tichom prostredí mestského parku v Novom Meste nad Váhom. Ideálne na krátkodobé aj dlhodobé pobyty.</p>
+                <div class="hero-actions">
+                    <a href="#kontakt" class="btn btn-primary">Rezervovať pobyt</a>
+                    <a href="https://youtu.be/5a8o58O1W0w" target="_blank" rel="noopener noreferrer" class="btn btn-outline">▶ Video prehliadka</a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <h3>Prečo si vybrať Penzion Park?</h3>
+                <!-- Booking.com hodnotenie spokojnosti -->
+                <a href="https://www.booking.com/hotel/sk/apartma-nova1-2-penzion-pakr-nova-c-mesto-nad-va-hom.sk.html" class="booking-widget" title="Hodnotenie hostí na Booking.com">
+                    <div class="booking-info">
+                        <div class="booking-brand">Booking<span>.com</span></div>
+                        <div class="booking-label">Vynikajúce hodnotenie</div>
+                        <div class="booking-reviews">Overená spokojnosť ubytovaných hostí</div>
+                    </div>
+                    <div class="booking-score">9,2</div>
+                </a>
+                <ul class="quick-list">
+                    <li><span class="check-icon">✓</span> Lokalita priamo v mestskom parku</li>
+                    <li><span class="check-icon">✓</span> Klimatizácia a Wi-Fi pripojenie v cene</li>
+                    <li><span class="check-icon">✓</span> Parkovanie v uzavretom dvore s kamerami</li>
+                    <li><span class="check-icon">✓</span> Veľká terasa s posedením a francúzske okná</li>
+                    <li><span class="check-icon">✓</span> Možnosť dlhodobého prenájmu</li>
+                </ul>
+                <a href="tel:0905216429" class="btn btn-submit">📞 Zavolať: 0905 216 429</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- O nás a vybavenie -->
+    <section id="o-nas">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Komfort a súkromie</span>
+                <h2>Kompletne vybavené 2-izbové apartmány</h2>
+                <p>Moderné bývanie s dôrazom na priestor, svetlo a bezpečnosť v blízkosti centra mesta.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text-card">
+                    <h3>O ubytovaní</h3>
+                    <p>
+                        <strong>Park – 2-izbové apartmány na prenájom</strong> sa nachádzajú v mestskom parku. Ponúkajú priestranné klimatizované 2-izbové apartmány so zariadenou kuchyňou, Wi-Fi, satelitnou TV, parkovaním v uzavretom dvore s kamerovým zabezpečením, s francúzskym oknom na každej izbe a veľkou terasou s posedením.
+                    </p>
+                    <p>
+                        Vo všetkých apartmánoch sa nachádza veľká predsieň, obývacia izba s kuchynskou linkou a jedálenským kútom, samostatná spálňa a kúpeľňa so sprchovacím kútom. Naše apartmány sú plne vybavené nábytkom a ostatným príslušenstvom, a tak sme schopní vám poskytnúť aj <strong>dlhodobé pobyty</strong>.
+                    </p>
+
+                    <div class="video-banner">
+                        <span>🎥 Pozrite si video prehliadku Penziónu PARK</span>
+                        <a href="https://youtu.be/5a8o58O1W0w" target="_blank" rel="noopener noreferrer" class="btn-video">Spustiť video</a>
+                    </div>
+                </div>
+
+                <div class="features-grid" id="sluzby">
+                    <div class="feature-item">
+                        <span class="feature-icon">❄️</span>
+                        <h4>Klimatizácia</h4>
+                        <p>Príjemná teplota v každom ročnom období vďaka vstavanej klimatizácii.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🛡️</span>
+                        <h4>Bezpečné parkovanie</h4>
+                        <p>Parkovanie v uzavretom dvore s nepretržitým kamerovým zabezpečením.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🍳</span>
+                        <h4>Zariadená kuchyňa</h4>
+                        <p>Obývacia izba prepojená s kuchynskou linkou a jedálenským kútom.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🌿</span>
+                        <h4>Veľká terasa</h4>
+                        <p>Priestranná terasa s posedením a francúzske okná na každej izbe.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📶</span>
+                        <h4>Wi-Fi a Satelitná TV</h4>
+                        <p>Rýchle bezdrôtové pripojenie na internet a TV.</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🛏️</span>
+                        <h4>Dispozícia 2+kk</h4>
+                        <p>Veľká predsieň, obývačka, samostatná spálňa a kúpeľňa so sprchou.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fotogaléria -->
+    <section class="gallery-section" id="galeria">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nahliadnite dovnútra</span>
+                <h2>Fotogaléria: APARTMÁNY</h2>
+                <p>Kliknutím na fotografiu zobrazíte detailný náhľad exteriéru a interiéru apartmánov.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-src="gallery/exterier1.jpg">
+                    <img src="gallery/exterier1.jpg" alt="Budova Penzion Park">
+                    <div class="gallery-caption">Exteriér budovy – Penzion Park</div>
+                </div>
+                <div class="gallery-item" data-src="gallery/interier2.jpg">
+                    <img src="gallery/interier2.jpg" alt="Obývacia izba s francúzskym oknom">
+                    <div class="gallery-caption">Priestranná obývacia izba</div>
+                </div>
+                <div class="gallery-item" data-src="gallery/interier1.jpg">
+                    <img src="gallery/interier1.jpg" alt="Kuchynská linka">
+                    <div class="gallery-caption">Kuchynská linka</div>
+                </div>
+                <div class="gallery-item" data-src="gallery/interier3,1.jpg">
+                    <img src="gallery/interier3,1.jpg" alt="Samostatná spálňa">
+                    <div class="gallery-caption">Samostatná spálňa</div>
+                </div>
+                <div class="gallery-item" data-src="gallery/interier4.jpg">
+                    <img src="gallery/interier4.jpg" alt="Veľa miesta na sedenie">
+                    <div class="gallery-caption">Veľa miesta na sedenie</div>
+                </div>
+                <div class="gallery-item" data-src="gallery/exterier2.jpg">
+                    <img src="gallery/exterier2.jpg" alt="Parkovanie vedľa objektu">
+                    <div class="gallery-caption">Parkovanie vedľa objektu</div>
+                </div>
+                <div class="gallery-item" data-src="gallery/terasa.jpg">
+                    <img src="gallery/terasa.jpg" alt="Priestranná terasa s posedením">
+                    <div class="gallery-caption">Priestranná terasa s posedením</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Rezervácie a informácie</span>
+                <h2>Kontaktujte nás</h2>
+                <p>Radi vám poskytneme bližšie informácie o voľných termínoch a dlhodobom prenájme.</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div>
+                        <h3>Rasťo Hruška – Penzion PARK</h3>
+                        <p>Napíšte nám e-mail, zavolajte nám, alebo si rezervujte pobyt cez <a href="https://www.booking.com/hotel/sk/apartma-nova1-2-penzion-pakr-nova-c-mesto-nad-va-hom.sk.html">Booking.com</a>.</p>
+
+                        <ul class="contact-details">
+                            <li>
+                                <div class="icon-box">📍</div>
+                                <div>
+                                    <strong>Adresa</strong>
+                                    <a href="https://maps.app.goo.gl/MXD2L5y5TbFTtG4q8" target="_blank" rel="noopener noreferrer"><span>J. Kollára 344/15<br>915 01 Nové Mesto nad Váhom</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-box">📞</div>
+                                <div>
+                                    <strong>Telefón</strong>
+                                    <a href="tel:0905216429">0905 216 429</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon-box">✉️</div>
+                                <div>
+                                    <strong>E-mail</strong>
+                                    <a href="mailto:ubytovanienovemesto@gmail.com">ubytovanienovemesto@gmail.com</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contact-form-box">
+                    <h3>Napíšte nám správu</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Meno a priezvisko</label>
+                            <input type="text" id="name" class="form-control" placeholder="Vaše meno" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Váš e-mail alebo telefón</label>
+                            <input type="text" id="email" class="form-control" placeholder="napr. jozef@email.sk / 0900 123 456" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Správa / Dopyt na termín</label>
+                            <textarea id="message" class="form-control" placeholder="Dobrý deň, mal by som záujem o prenájom apartmánu v termíne..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-submit">Odoslať nezáväzný dopyt</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox okno pre galériu -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Zavrieť">&times;</button>
+        <img src="" alt="Zväčšený náhľad" id="lightboxImg">
+    </div>
+
+    <!-- Pätička -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <strong>Penzion Park – Ubytovanienovemesto</strong> &copy; 2026 Jakub Barto. Všetky práva vyhradené.
+            </div>
+            <div class="footer-links">
+                <a href="#uvod">Úvodná stránka</a>
+                <a href="#o-nas">O nás</a>
+                <a href="#galeria">Fotogaléria</a>
+                <a href="#kontakt">Kontakt</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobilné menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navMenu.classList.remove('open'));
+        });
+
+        // Lightbox fotogaléria
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                lightboxImg.src = item.dataset.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) lightbox.classList.remove('active');
+        });
+
+        // Odoslanie formulára cez e-mailového klienta
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const subject = encodeURIComponent('Dopyt na ubytovanie - Penzion Park (' + name + ')');
+            const body = encodeURIComponent('Meno: ' + name + '\nKontakt: ' + contact + '\n\nSpráva:\n' + message);
+            window.location.href = `mailto:ubytovanienovemesto@gmail.com?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>
